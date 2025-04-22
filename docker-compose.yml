@@ -1,0 +1,19 @@
+version: '3'
+services:
+  vulnerable-app:
+    build: ./vulnerable_app
+    ports:
+      - "5000:5000"
+    networks:
+      - ssrf-net
+
+  internal-api:
+    build: ./internal_api
+    expose:
+      - "8000"
+    networks:
+      - ssrf-net
+
+networks:
+  ssrf-net:
+    driver: bridge
