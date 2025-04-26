@@ -1,14 +1,5 @@
-version: '3'
+vversion: '3'
 services:
-
-  exploit:
-    image: python:3.9-slim
-    volumes:
-      - .:/app
-    working_dir: /app
-    networks:
-      - ssrf-net
-    entrypoint: ["python", "exploit.py"]
   vulnerable-app:
     build: ./vulnerable_app
     ports:
@@ -20,6 +11,15 @@ services:
     build: ./internal_api
     expose:
       - "8000"
+    networks:
+      - ssrf-net
+
+  attacker:
+    image: python:3.9-slim
+    volumes:
+      - .:/lab
+    working_dir: /lab
+    command: tail -f /dev/null
     networks:
       - ssrf-net
 
