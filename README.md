@@ -138,29 +138,23 @@ else:
 
 ---
 
-## 🛠 Setup
 
-### Pushing to an existing GitHub repo
-If you already have an empty GitHub repository named `urllib_ssrf_lab`, run:
-```bash
-git init
-git remote add origin https://github.com/<your-username>/urllib_ssrf_lab.git
-git add .
-git commit -m "Initial commit: CVE-2023-24329 SSRF lab"
-git branch -M main
-git push -u origin main
-```
 
-### Cloning and running the lab
-```bash
-git clone https://github.com/<your-username>/urllib_ssrf_lab.git
-cd urllib_ssrf_lab
-docker-compose up --build
-```
+:
 
-## 🚨 Exploitation
+🧪 Run SSRF Exploit from Attacker Container
 ```bash
+
+docker exec -it urllib_ssrf_lab-attacker-1 bash
+pip install requests
 python exploit.py
+```
+Expected output:
+
+```bash
+Sending SSRF attempt to vulnerable app...
+Response:
+Internal API: You shouldn’t be here via SSRF!
 ```
 
 ## 🛡 Remediation
