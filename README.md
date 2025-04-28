@@ -2,23 +2,6 @@
 
 A demonstration of [CVE-2023-24329](https://nvd.nist.gov/vuln/detail/CVE-2023-24329) – a URL parsing vulnerability in Python’s `urllib` that can be abused to bypass hostname checks and perform SSRF (Server-Side Request Forgery).
 
-## 🗂 Directory structure
-```
-urllib_ssrf_lab/
-├── docker-compose.yml
-├── vulnerable_app/
-│   ├── Dockerfile
-│   └── app.py
-├── internal_api/
-│   ├── Dockerfile
-│   └── app.py
-├── exploit.py
-├── remediate.py
-└── README.md
-```
-
----
-
 ### vulnerable_app/Dockerfile
 ```Dockerfile
 FROM python:3.9-slim
@@ -105,7 +88,7 @@ networks:
 
 ---
 
-### exploit.py
+### exploit.py(sends URL internal-api:8000, hidden as 127.0.0.1)
 ```python
 import requests
 
@@ -120,7 +103,7 @@ print(response.text)
 
 ---
 
-### remediate.py
+### remediate.py(quick fix that creates a simple URL sanitizer)
 ```python
 import urllib.parse
 
@@ -138,11 +121,17 @@ else:
 
 ---
 
+Build and run the docker
+
+```
+git clone https://github.com/JoshRog7/urllib_ssrf_lab.git
+docker-compose build
+docker-compose up
+
+```
 
 
-:
-
-🧪 Run SSRF Exploit from Attacker Container
+🧪 Run SSRF Exploit from Attacker(new) Container
 ```bash
 
 docker exec -it urllib_ssrf_lab-attacker-1 bash
