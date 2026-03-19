@@ -132,7 +132,7 @@ docker-compose up
 ```
 
 
-🧪 Run SSRF Exploit from Attacker(new) Container
+Run SSRF Exploit from Attacker(new) Container
 ```bash
 
 docker exec -it urllib_ssrf_lab-attacker-1 bash
@@ -147,12 +147,12 @@ Response:
 Internal API: You shouldn’t be here via SSRF!
 ```
 
-## 🛡 Remediation
+## Remediation
 ```bash
 python remediate.py
 ```
 
-## ✅ Fix
+## Fix
 - Use Python >= 3.11.4
 - Sanitize input URLs before making outbound requests
 - Implement allowlists or DNS/IP validation
