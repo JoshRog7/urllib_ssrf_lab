@@ -125,6 +125,7 @@ Build and run the docker
 
 ```
 git clone https://github.com/JoshRog7/urllib_ssrf_lab.git
+cd urllib_ssrf_lab
 docker-compose build
 docker-compose up
 
